@@ -101,11 +101,3 @@ AutoCreate 是 数据库链接采用Jfinal ActiveRecordPlugin，模板配置采�
 ***bat执行***
 
 > start.bat
-
-# 鸣谢
- 1. [JFinal](http://www.oschina.net/p/jfinal)
- 2. [beetl](http://ibeetl.com/community/)
- 3. [oschina](http://www.oschina.net/)
-
-# 开源赞助
-![OSC@GIT](http://static.oschina.net/uploads/space/2015/0213/104940_ZKNb_166354.png "开源赞助我(支付宝)")
