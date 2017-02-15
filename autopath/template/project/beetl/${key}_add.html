@@ -1,0 +1,70 @@
+<% 
+DIRECTIVE SAFE_OUTPUT_OPEN;
+var headContent = {
+	include("/pages/template/head.html"){}
+%>
+<script type="text/javascript">
+	var oper ;
+	jQuery(function($) {
+		oper = new flyfox("@{crud.urlKey}", "@{crud.name}");
+	});
+</script>
+
+<%
+};
+var bodyContent = {
+%>
+<form name="form1" action="" method="post" class="form-horizontal"
+		role="form" onsubmit="oper.save(${model.@{crud.primaryKey}});">
+	<input type="hidden" name="model.@{crud.primaryKey }" value="${model.@{crud.primaryKey}}" />
+	<table class="table">
+		<%  // 列表头部%>
+		#for(entry in crud.addMap){ #
+				#
+				var key = entry.value.key;
+				var name = 'model.'+entry.value.key;
+				var data = flyfox.dataList(entry.value.formTypeData); 
+				#
+<tr>
+					<td>@{entry.value.name}</td>
+					<td>
+					# if (entry.value.formType=="INPUT") {#
+						#if (entry.value.inputType=='TEXT') { #
+					<input class="form-control" type="text" name="@{name}" value="${@{name} }" @{!strutils.isEmpty(entry.value.formTypeValid)?entry.value.formTypeVaild:'' } />
+						#
+						} else if (entry.value.inputType=='RADIO') {
+							layout("util/radio.html",{obj:data,name:name}){ }  
+						} else if (entry.value.inputType=='CHECKBOX') {
+							layout("util/checkbox.html",{obj:data,name:name}){ } 
+						} else { 
+						#
+					<input class="form-control" type="@{entry.value.inputType}" name="@{name}" value="${@{name}}" @{!strutils.isEmpty(entry.value.formTypeValid)?entry.value.formTypeVaild:'' } />
+						#} #
+					#} else if (entry.value.formType=='TEXTAREA') { #
+					<textarea class="form-control" rows="3" cols="30" name="@{name}">${@{name}}</textarea>
+					#}  else if (entry.value.formType=='DICT')  { #
+					<select name="@{name}" class="form-control" >
+					${flyfox.dictSelect('@{entry.value.formTypeData}' , @{name}!'')  }
+					</select>
+					#}  else if (entry.value.formType=='SELECT') { #
+					<select name="@{name}" class="form-control" >
+						# layout("util/select.html",{obj:data,name:name}){ } #
+					</select>
+					#}#
+					</td>
+				</tr>
+		#} #
+		<tr>
+			<td colspan="2" style="text-align: center;">
+			<input type="submit" value="保 存" class="btn btn-default">
+			<button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
+			</td>
+		</tr>
+	</table>
+</form>
+<%}; %>
+
+<% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
+<%} 
+DIRECTIVE SAFE_OUTPUT_CLOSE;
+%>

@@ -1,0 +1,15 @@
+#
+DIRECTIVE SAFE_OUTPUT_OPEN;
+#
+<c:choose>
+	#for(entry in obj){ #
+	<c:when test="${@{name}==@{entry.key}}">
+			@{entry.value}
+	</c:when>
+	#} #
+	<c:otherwise>
+	</c:otherwise>
+</c:choose>
+#
+DIRECTIVE SAFE_OUTPUT_CLOSE;
+#

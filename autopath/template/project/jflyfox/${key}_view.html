@@ -1,0 +1,64 @@
+<% 
+var headContent = {
+	include("/pages/template/head.html"){}
+};
+
+var bodyContent = {
+%>
+<form name="form1" action="" method="post" class="form-horizontal" role="form">
+	<!-- 数据列表 -->
+	<table class="table">
+		<%  // 列表头部 %>
+		# for(entry in crud.viewMap){ #
+			#
+			var key = entry.value.key;
+			var name = 'model.'+entry.value.key;
+			var data = flyfox.dataList(entry.value.formTypeData); 
+			#
+			<tr>
+				<td>@{entry.value.name}</td>
+				#if (entry.value.formType=="INPUT") {#
+					# if (entry.value.inputType=='TEXT') { #
+				<td>${@{name}}</td>
+					# } else if (entry.value.inputType=='RADIO') { #
+				<td>
+				# layout("util/value.html",{obj:data,name:name}){ }  #
+				</td>  
+					# } else if (entry.value.inputType=='CHECKBOX') { #
+				<td>
+				# layout("util/value.html",{obj:data,name:name}){ }  #
+				</td> 
+					# } else { #
+				<td>${@{name}}</td>
+					# } #
+				# } else if (entry.value.formType=='TEXTAREA') { #
+				<td title="${@{name}}">
+					<% if (strutil.length(@{name}) > 6) { %>
+						${strutil.subStringTo(@{name}, 0, 6)}...
+					<%	} else {%>
+						${@{name} }
+					<% } %>
+				</td>
+				# }  else if (entry.value.formType=='DICT') { #
+				<td>${flyfox.dictValue(@{name} )  }</td>
+				# }  else if (entry.value.formType=='SELECT') { #
+				<td>
+				# layout("util/value.html",{obj:data,name:name}){ }  #
+				</td> 
+				#}#
+			</tr>
+		# } #
+		
+	</table>
+	
+	<div style="height: 50px;clear: both;">&nbsp;</div>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
+		<button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
+	  </div>
+	</nav>
+</form>
+<%}; %>
+
+<% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
+<%} %>
