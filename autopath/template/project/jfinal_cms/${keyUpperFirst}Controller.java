@@ -35,7 +35,7 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 		if (StrUtils.isEmpty(orderBy)) {
 			sql.append(" order by t.@{crud.primaryKey} desc ");
 		} else {
-			sql.append(" order by ").append(orderBy);
+			sql.append(" order by t.").append(orderBy);
 		}
 
 		Page<@{crud.table.className}> page = @{crud.table.className}.dao.paginate(getPaginator(), "select t.* ", //

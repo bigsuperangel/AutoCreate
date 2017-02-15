@@ -12,6 +12,7 @@ import org.beetl.core.GroupTemplate;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -36,15 +37,19 @@ public class AutoCreate {
 
 		System.out.println("####生成模板开始...");
 		init();
-		String path, html;
+		String webPath,javaPath, html;
 		System.out.print("####创建文件：");
 
 		if (crudMap != null) {
 			for (CRUD crud : crudMap.values()) {
 				System.out.print("\t" + crud.getUrlKey() + ".....\n");
-				path = PATH_OUTPUT + "/" + crud.getUrlKey();
-				if (!new File(path).exists()) {
-					new File(path).mkdirs();
+				webPath = PATH_OUTPUT + "web/" + crud.getUrlKey();
+				javaPath = PATH_OUTPUT + "java/" + crud.getUrlKey();
+				if (!new File(webPath).exists()) {
+					new File(webPath).mkdirs();
+				}
+				if (!new File(javaPath).exists()) {
+					new File(javaPath).mkdirs();
 				}
 
 				if (groupTemplate != null)
@@ -53,17 +58,33 @@ public class AutoCreate {
 						new FileFilter() {
 							public boolean accept(File pathname) {
 								// 有后缀就处理
-								System.out.println(pathname.getName());
-								return pathname.getName().indexOf(".") > 0;
+								return pathname.getName().indexOf(".java") > 0;
+							}
+						});
+
+				List<String> htmlList = FileUtils.findFileNames(System.getProperty("user.dir") + templatePath,
+						new FileFilter() {
+							public boolean accept(File pathname) {
+								// 有后缀就处理
+								return pathname.getName().indexOf(".html") > 0;
 							}
 						});
 
 				for (String name : pageList) {
+					System.out.println(name);
 					html = TemplateUtils.getStr(templatePath + name, "crud", crud);
 
 					// 文件名处理
 					String fileName = GroupTemplateFactory.getFileName(crud, name);
-					FileUtils.write(path + "/" + fileName, html.getBytes("UTF-8"));
+					FileUtils.write(Paths.get(javaPath,fileName).toString(), html.getBytes("UTF-8"));
+				}
+
+				for (String name : htmlList) {
+					html = TemplateUtils.getStr(templatePath + name, "crud", crud);
+
+					// 文件名处理
+					String fileName = GroupTemplateFactory.getFileName(crud, name);
+					FileUtils.write(Paths.get(webPath,fileName).toString(), html.getBytes("UTF-8"));
 				}
 			}
 			System.out.println();
