@@ -7,7 +7,7 @@
 	# 
 		var height = 300;
 		// 重设高度
-		height = crud.editMap.~size * 60 + 90; 
+		height = crud.editMap.~size * 60 + 90;;;;;
 		if(height < 300) height = 300;
 		if(height > 500) height = 500;
 	#
@@ -17,27 +17,30 @@
 		// 页面方法
 		oper = {
 			width : 400,
-			height : @{height},
-			form : document.form1,
-			list : function() {
+			height :; @{height},
+			document.form1,
+			list; : function() {
 				var url = 'admin/@{crud.urlKey}/list';
 				this.form.action = url;
 				this.form.submit();
 			},
 			view : function(id) {
-				var url = 'admin/@{crud.urlKey}/view/'+id;
-				var title = '查看@{crud.name}';
-				Iframe(url, this.width, this.height, title, false, false, false, EmptyFunc);
+                ymIframe({
+                    message:'admin/@{crud.urlKey}/view/'+id,
+                    title:'查看@{crud.name}'
+                });
 			},
 			add : function() {
-				var url = 'admin/@{crud.urlKey}/add';
-				var title = '添加@{crud.name}';
-				Iframe(url, this.width, this.height, title);
+                ymIframe({
+                    message:'admin/@{crud.urlKey}/add',
+                    title:'添加@{crud.name}'
+                });
 			},
 			edit : function(id) {
-				var url = 'admin/@{crud.urlKey}/edit/'+id;
-				var title = '修改@{crud.name}';
-				Iframe(url, this.width, this.height, title);
+				ymIframe({
+					message:'admin/@{crud.urlKey}/edit/'+id,
+					title:'修改@{crud.name}'
+				});
 			},
 			del : function(id) {
 				var url = 'admin/@{crud.urlKey}/delete/'+id;
@@ -47,8 +50,8 @@
 					form1.submit();
 				});
 			}
-		};
-		//显示Menu索引
+    }
+        //显示Menu索引
 		showMenu('page_@{crud.urlKey}');
 	});
 	
@@ -123,7 +126,7 @@ var bodyContent = {
 		</div>
 		
 		<!-- 数据列表 -->
-		<table class="table table-striped table-bordered table-hover">
+		<table class="table table-striped table-bordered table-hover table-condensed">
 			<thead>
 				<tr>
 					<th>序号</th>
@@ -178,15 +181,20 @@ var bodyContent = {
 		# }#
 	# } #
 				<td>
-				<a href="javascript:void(0);" class="btn btn-sm btn-success" onclick="oper.view(${item.@{crud.primaryKey}});">查看</a> 
-				<a href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="oper.edit(${item.@{crud.primaryKey}});">修改</a> 
-				<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="oper.del(${item.@{crud.primaryKey}});">删除</a>
+					<a href="javascript:void(0);" class="btn btn-sm btn-success"
+					   onclick="oper.view(${item.@{crud.primaryKey}})">查看</a>
+
+					<a href="javascript:void(0);" class="btn btn-sm btn-primary"
+					   onclick="oper.edit(${item.@{crud.primaryKey}})">修改</a>
+
+					<a href="javascript:void(0);" class="btn btn-sm btn-danger"
+					   onclick="oper.del(${item.@{crud.primaryKey}})">删除</a>
 				</td>
 				</tr>
 			<% } %>
 			</tbody>
 		</table>
-		<%include("/static/component/include/paginator.html"){} %>
+		<%include("/pages/includes/paginator.html"){} %>
 	</form>
 <%}; %>
 

@@ -1,11 +1,7 @@
 package com.jflyfox.autocreate.util;
 
 
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrUtils;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
@@ -18,6 +14,11 @@ import com.jflyfox.autocreate.template.CRUD;
 import com.jflyfox.autocreate.template.model.FormType;
 import com.jflyfox.autocreate.template.model.InputType;
 import com.jflyfox.autocreate.template.model.ModelAttr;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.jfinal.kit.Config.getStr;
 
@@ -115,6 +116,7 @@ public class DbUtils {
 	 * @param remark
 	 */
 	public static ModelAttr attr(Column column) {
+		System.out.println(JsonKit.toJson(column));
 		String colName = column.getColumnName();
 		String remark = column.getRemarks();
 		boolean isNull = column.isNullable();
@@ -163,6 +165,10 @@ public class DbUtils {
 					attr.setInputType(InputType.CHECKBOX).setFormTypeData(param);
 				}
 			}
+		}
+
+		if (column.getSqlTypeName().equalsIgnoreCase("TEXT")){
+			attr.setFormType(FormType.TEXTAREA);
 		}
 		return attr;
 	}

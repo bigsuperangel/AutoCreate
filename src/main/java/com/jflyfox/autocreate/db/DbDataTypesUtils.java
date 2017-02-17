@@ -17,11 +17,8 @@ public class DbDataTypesUtils {
 				|| javaType.endsWith("BigInteger")) {
 			return true;
 		}
-		if (javaType.endsWith("float") || javaType.endsWith("double") || javaType.endsWith("BigDecimal")
-				|| javaType.endsWith("BigInteger")) {
-			return true;
-		}
-		return false;
+		return javaType.endsWith("float") || javaType.endsWith("double") || javaType.endsWith("BigDecimal")
+				|| javaType.endsWith("BigInteger");
 	}
 
 	public static boolean isIntegerNumber(String javaType) {
@@ -29,32 +26,20 @@ public class DbDataTypesUtils {
 				|| javaType.endsWith("Byte")) {
 			return true;
 		}
-		if (javaType.endsWith("long") || javaType.endsWith("int") || javaType.endsWith("short")
-				|| javaType.endsWith("byte")) {
-			return true;
-		}
-		return false;
+		return javaType.endsWith("long") || javaType.endsWith("int") || javaType.endsWith("short")
+				|| javaType.endsWith("byte");
 	}
 
 	public static boolean isDate(String javaType) {
-		if (javaType.endsWith("Date") || javaType.endsWith("Timestamp") || javaType.endsWith("Time")) {
-			return true;
-		}
-		return false;
+		return javaType.endsWith("Date") || javaType.endsWith("Timestamp") || javaType.endsWith("Time");
 	}
 
 	public static boolean isTimeStamp(String javaType) {
-		if (javaType.endsWith("Timestamp")) {
-			return true;
-		}
-		return false;
+		return javaType.endsWith("Timestamp");
 	}
 
 	public static boolean isString(String javaType) {
-		if (javaType.endsWith("String")) {
-			return true;
-		}
-		return false;
+		return javaType.endsWith("String");
 	}
 
 	public static String getPreferredJavaType(int sqlType, int size, int decimalDigits) {
@@ -62,10 +47,11 @@ public class DbDataTypesUtils {
 			if (size == 1) {
 				// https://sourceforge.net/tracker/?func=detail&atid=415993&aid=662953&group_id=36044
 				return "java.lang.Boolean";
-			} else if (size < 3) {
-				return "java.lang.Byte";
-			} else if (size < 5) {
-				return "java.lang.Short";
+//			全部都改成int类型
+//			} else if (size < 3) {
+//				return "java.lang.Byte";
+//			} else if (size < 5) {
+//				return "java.lang.Short";
 			} else if (size < 10) {
 				return "java.lang.Integer";
 			} else if (size < 19) {
@@ -82,8 +68,10 @@ public class DbDataTypesUtils {
 	}
 
 	static {
-		TYPE_MAP.put(Types.TINYINT, "java.lang.Byte");
-		TYPE_MAP.put(Types.SMALLINT, "java.lang.Short");
+//		TYPE_MAP.put(Types.TINYINT, "java.lang.Byte");
+		TYPE_MAP.put(Types.TINYINT, "java.lang.Integer");
+//		TYPE_MAP.put(Types.SMALLINT, "java.lang.Short");
+		TYPE_MAP.put(Types.SMALLINT, "java.lang.Integer");
 		TYPE_MAP.put(Types.INTEGER, "java.lang.Integer");
 		TYPE_MAP.put(Types.BIGINT, "java.lang.Long");
 		TYPE_MAP.put(Types.REAL, "java.lang.Float");

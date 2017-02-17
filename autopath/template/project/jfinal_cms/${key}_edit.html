@@ -22,6 +22,8 @@ var headContent = {
 };
 var bodyContent = {
 %>
+<div class="container">
+	<br>
 <form name="form1" method="post" class="form-horizontal" role="form" >
 	<input type="hidden" name="model.@{crud.primaryKey }" value="${model.@{crud.primaryKey}}" />
 
@@ -51,14 +53,22 @@ var bodyContent = {
 			}
 		}
 		#
+	#if(entry.value.formType=='TEXTAREA') { #
+	<div class="form-group">
+		<label for="@{key}" class="col-sm-2 control-label">@{entry.value.name}</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" rows="5" cols="30" name="@{name}" id="@{key}" @{valid }>${@{name}}</textarea>
+		</div>
+	</div>
+	#continue;}  #
 	#if (entryLP.odd ){#
 	<div class="form-group">
 	# }#
-		<label for="@{entry.value.name}" class="col-sm-2 control-label">@{entry.value.name}</label>
+		<label for="@{key}" class="col-sm-2 control-label">@{entry.value.name}</label>
 		<div class="col-sm-4">
 			# if (entry.value.formType=="INPUT") {#
 			#if (entry.value.inputType=='TEXT') { #
-			<input class="form-control" type="text" name="@{name}" value="${@{name} }" @{valid } id="@{entry.value.name}"/>
+			<input class="form-control" type="text" name="@{name}" value="${@{name} }" id="@{key}" @{valid } />
 			#
 			} else if (entry.value.inputType=='RADIO') {
 			layout("util/radio.html",{obj:data,name:name}){ }
@@ -66,21 +76,19 @@ var bodyContent = {
 			layout("util/checkbox.html",{obj:data,name:name}){ }
 			} else {
 			#
-			<input class="form-control" type="@{entry.value.inputType}" name="@{name}" value="${@{name}}" id="@{entry.value.name}" @{valid }} />
+			<input class="form-control" type="@{entry.value.inputType}" name="@{name}" value="${@{name}}" id="@{key}" @{valid }} />
 			#} #
-			#} else if (entry.value.formType=='TEXTAREA') { #
-			<textarea class="form-control" rows="5" cols="30" name="@{name}" id="@{entry.value.name}" @{valid }>${@{name}}</textarea>
 			#}  else if (entry.value.formType=='DICT')  { #
-			<select name="@{name}" class="form-control" id="@{entry.value.name}" @{valid }>
+			<select name="@{name}" class="form-control" id="@{key}" @{valid }>
 				${flyfox.dictSelect('@{entry.value.formTypeData}' , @{name}!'')  }
 			</select>
 			#}  else if (entry.value.formType=='SELECT') { #
-			<select name="@{name}" class="form-control" id="@{entry.value.name}" @{valid }>
+			<select name="@{name}" class="form-control" id="@{key}" @{valid }>
 				# layout("util/select.html",{obj:data,name:name}){ } #
 			</select>
 			#}#
 		</div>
-	# if (entryLP.even ){#
+	# if (entryLP.even || (entryLP.odd && entryLP.last)){#
 	</div>
 	# }#
 
@@ -94,6 +102,7 @@ var bodyContent = {
 	  </div>
 	</nav>
 </form>
+</div>
 <%}; %>
 
 <% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
