@@ -113,7 +113,18 @@ var bodyContent = {
 			# }#
 			</div>
 	# }#
-			
+
+			# for(entry in crud.listMap){ #
+			#
+			var key = entry.value.key;
+			var name = 'attr.'+entry.value.key;
+			#
+			<div class="form-group">
+				<input class="form-control" type="text" name="@{name}" value="${@{name}!''}"
+					   placeholder="请输入@{entry.value.name}" />
+			</div>
+			# } #
+
 			<button type="button" class="btn btn-default" onclick="oper.list();" name="search">
 			 		<span class="glyphicon glyphicon-search"></span> 查 询
 			</button>
