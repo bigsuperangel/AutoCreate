@@ -48,7 +48,7 @@ var bodyContent = {
 		#continue;}  #
 		<div class="form-group">
 			<label for="@{key}" class="col-sm-2 control-label">@{entry.value.name}</label>
-			<div class="col-sm-4">
+			<div class="col-sm-10">
 				# if (entry.value.formType=="INPUT") {#
 				#if (entry.value.inputType=='TEXT') { #
 				<input class="form-control" type="text" name="@{name}" value="${@{name} }" id="@{key}" readonly />

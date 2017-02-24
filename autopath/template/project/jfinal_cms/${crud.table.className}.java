@@ -15,8 +15,7 @@ public class @{crud.table.className} extends BaseProjectModel<@{crud.table.class
     //columns START
 	# for(column in crud.table.columns){ #
 	/** @{column.remarks} **/
-//	private String @{strutils.toUpperCase(column.columnName)} = "@{strutils.toLowerCase(column.columnName)}";
-	private String @{strutils.toUpperCase(column.columnName)} = "@{column.columnName}";
+	private String @{strutils.toUpperCase(column.columnName)} = "@{strutils.toLowerCase(column.columnName)}";
 	# } #
 
 	// method START

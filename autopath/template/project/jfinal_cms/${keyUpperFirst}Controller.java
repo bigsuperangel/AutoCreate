@@ -1,12 +1,11 @@
 package com.jflyfox.modules.@{crud.urlKey};
 
+import com.jfinal.plugin.activerecord.Page;
 import com.jflyfox.component.base.BaseProjectController;
 import com.jflyfox.jfinal.component.annotation.ControllerBind;
 import com.jflyfox.jfinal.component.db.SQLUtils;
-import com.jflyfox.modules.admin.article.TbArticle;
-import com.jflyfox.modules.admin.site.TbSite;
+import com.jflyfox.modules.admin.attachimage.TbAttachImage;
 import com.jflyfox.util.StrUtils;
-import com.jfinal.plugin.activerecord.Page;
 
 /**
  * @{crud.table.remarks}
@@ -17,6 +16,7 @@ import com.jfinal.plugin.activerecord.Page;
 public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BaseProjectController {
 
 	private static final String path = "/pages/admin/@{crud.urlKey}/@{crud.urlKey}_";
+	private static final String BIZ_CODE = "@{strutils.toUpperCase(crud.urlKey)}_CODE";
 
 	public void index() {
 		list();
@@ -92,5 +92,18 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 			model.save();
 		}
 		renderMessage("保存成功");
+	}
+
+	public void toUpload(){
+		Long bizId = getParaToLong();
+		TbAttachImage ai = TbAttachImage.dao.findFirst(" select * from @{crud.table.tableName} t where t.biz_id = ? and t.biz_code = ?",bizId,BIZ_CODE);
+		if(null == ai){
+			ai = new TbAttachImage();
+			ai.setBizCode(BIZ_CODE);
+			ai.setBizId(bizId);
+		}
+		setAttr("attach",ai);
+		setAttr("actionUrl",UPLOAD_ACTION);
+		render(UPLOAD_FILE);
 	}
 }
