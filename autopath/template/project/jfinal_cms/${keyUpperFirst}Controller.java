@@ -10,7 +10,7 @@ import com.jflyfox.util.StrUtils;
 /**
  * @{crud.table.remarks}
  * 
- * @author flyfox 2014-4-24
+ * @author linyu @{date()}
  */
 @ControllerBind(controllerKey = "/admin/@{crud.urlKey}")
 public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BaseProjectController {
