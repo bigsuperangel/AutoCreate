@@ -96,7 +96,7 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 
 	public void toUpload(){
 		Long bizId = getParaToLong();
-		TbAttachImage ai = TbAttachImage.dao.findFirst(" select * from @{crud.table.tableName} t where t.biz_id = ? and t.biz_code = ?",bizId,BIZ_CODE);
+		TbAttachImage ai = TbAttachImage.dao.findFirst(" select * from tb_attach_image t where t.biz_id = ? and t.biz_code = ?",bizId,BIZ_CODE);
 		if(null == ai){
 			ai = new TbAttachImage();
 			ai.setBizCode(BIZ_CODE);
