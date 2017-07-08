@@ -25,7 +25,7 @@ public class AutoCreate {
 	public static Map<String, CRUD> crudMap;
 
 	public static void createCode() throws Exception {
-		System.out.println(System.getProperty("user.dir"));
+		System.out.println("System.getProperty(\"user.dir\") = " + System.getProperty("user.dir"));
 		createCode(AutoCreate.PATH_PAGE_TEMPLATE);
 	}
 
