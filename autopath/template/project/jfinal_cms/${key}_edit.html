@@ -5,12 +5,12 @@ include("/pages/template/head.html"){}
 %>
 <script type="text/javascript">
     var oper = {
-        save:function(id){
-            if(!validForm()) {
+        save: function (id) {
+            if (!validForm()) {
                 return false;
             }
             id = id || '0';
-            var url = 'admin/@{crud.urlKey}/save/'+id;
+            var url = 'admin/@{crud.urlKey}/save/' + id;
             form1.action = url;
             form1.submit();
             return true;
@@ -23,80 +23,88 @@ include("/pages/template/head.html"){}
 var bodyContent = {
 %>
 <div class="container">
-	<br>
-	<form name="form1" method="post" class="form-horizontal" role="form" >
-		<input type="hidden" name="model.@{crud.primaryKey }" value="${model.@{crud.primaryKey}}" />
+    <br>
+    <div class="panel panel-primary">
+        <div class="panel-heading">@{crud.name}操作</div>
+        <div class="panel-body">
+            <form name="form1" method="post" class="form-horizontal" role="form">
+                <input type="hidden" name="model.@{crud.primaryKey }" value="${model.@{crud.primaryKey}}"/>
 
-		<%  // 列表头部%>
-		#for(entry in crud.editMap){ #
-		#
-		var key = entry.value.key;
-		var name = 'model.'+entry.value.key;
-		var data = flyfox.dataList(entry.value.formTypeData);
-		// 验证
-		var valid = "";
-		var isNull = entry.value.isNull;
-		var isNumber = entry.value.isNumber;
-		if(!strutils.isEmpty(entry.value.formTypeValid)){
-		valid = entry.value.formTypeValid;
-		} else if(entry.value.formType=='SELECT' && !isNull) {
-		valid = " valid='vselect' validname='" + entry.value.name + "' ";
-		} else if(entry.value.formType=='DICT' && !isNull) {
-		valid = " valid='vselect' validname='" + entry.value.name + "' ";
-		} else if(entry.value.formType=="INPUT") {
-		if(isNumber && isNull) {
-		valid = " valid='vnum' validname='" + entry.value.name + "' ";
-		} else if(isNumber && !isNull) {
-		valid = " valid='vnum_y' validname='" + entry.value.name + "' ";
-		} else if(!isNull) {
-		valid = " valid='vtext' validname='" + entry.value.name + "' ";
-		}
-		}
-		#
-		#if(entry.value.formType=='TEXTAREA') { #
-		<div class="form-group">
-			<label for="@{key}" class="col-sm-2 control-label">@{entry.value.name}</label>
-			<div class="col-sm-10">
-				<textarea class="form-control" rows="5" cols="30" name="@{name}" id="@{key}" @{valid }>${@{name}}</textarea>
-			</div>
-		</div>
-		#continue;}  #
-		<div class="form-group">
-			<label for="@{key}" class="col-sm-2 control-label">@{entry.value.name}</label>
-			<div class="col-sm-10">
-				# if (entry.value.formType=="INPUT") {#
-				#if (entry.value.inputType=='TEXT') { #
-				<input class="form-control" type="text" name="@{name}" value="${@{name} }" id="@{key}" @{valid } />
-				#
-				} else if (entry.value.inputType=='RADIO') {
-				layout("util/radio.html",{obj:data,name:name}){ }
-				} else if (entry.value.inputType=='CHECKBOX') {
-				layout("util/checkbox.html",{obj:data,name:name}){ }
-				} else {
-				#
-				<input class="form-control" type="@{entry.value.inputType}" name="@{name}" value="${@{name}}" id="@{key}" @{valid }} />
-				#} #
-				#}  else if (entry.value.formType=='DICT')  { #
-				<select name="@{name}" class="form-control" id="@{key}" @{valid }>
-					${flyfox.dictSelect('@{entry.value.formTypeData}' , @{name}!'')  }
-				</select>
-				#}  else if (entry.value.formType=='SELECT') { #
-				<select name="@{name}" class="form-control" id="@{key}" @{valid }>
-					# layout("util/select.html",{obj:data,name:name}){ } #
-				</select>
-				#}#
-			</div>
-		</div>
-		#} #
+                <% // 列表头部%>
+                #for(entry in crud.editMap){ #
+                #
+                var key = entry.value.key;
+                var name = 'model.'+entry.value.key;
+                var data = flyfox.dataList(entry.value.formTypeData);
+                // 验证
+                var valid = "";
+                var isNull = entry.value.isNull;
+                var isNumber = entry.value.isNumber;
+                if(!strutils.isEmpty(entry.value.formTypeValid)){
+                valid = entry.value.formTypeValid;
+                } else if(entry.value.formType=='SELECT' && !isNull) {
+                valid = " valid='vselect' validname='" + entry.value.name + "' ";
+                } else if(entry.value.formType=='DICT' && !isNull) {
+                valid = " valid='vselect' validname='" + entry.value.name + "' ";
+                } else if(entry.value.formType=="INPUT") {
+                if(isNumber && isNull) {
+                valid = " valid='vnum' validname='" + entry.value.name + "' ";
+                } else if(isNumber && !isNull) {
+                valid = " valid='vnum_y' validname='" + entry.value.name + "' ";
+                } else if(!isNull) {
+                valid = " valid='vtext' validname='" + entry.value.name + "' ";
+                }
+                }
+                #
+                #if(entry.value.formType=='TEXTAREA') { #
+                <div class="form-group">
+                    <label for="@{key}" class="col-sm-2 control-label">@{entry.value.name}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="5" cols="30" name="@{name}" id="@{key}" @{valid }>${@{name}}</textarea>
+                    </div>
+                </div>
+                #continue;} #
+                <div class="form-group">
+                    <label for="@{key}" class="col-sm-2 control-label">@{entry.value.name}</label>
+                    <div class="col-sm-10">
+                        # if (entry.value.formType=="INPUT") {#
+                        #if (entry.value.inputType=='TEXT') { #
+                        <input class="form-control" type="text" name="@{name}" value="${@{name} }" id="@{key}" @{valid
+                               }/>
+                        #
+                        } else if (entry.value.inputType=='RADIO') {
+                        layout("util/radio.html",{obj:data,name:name}){ }
+                        } else if (entry.value.inputType=='CHECKBOX') {
+                        layout("util/checkbox.html",{obj:data,name:name}){ }
+                        } else {
+                        #
+                        <input class="form-control" type="@{entry.value.inputType}" name="@{name}" value="${@{name}}"
+                               id="@{key}" @{valid }}/>
+                        #} #
+                        #} else if (entry.value.formType=='DICT') { #
+                        <select name="@{name}" class="form-control" id="@{key}" @{valid }>
+                            ${flyfox.dictSelect('@{entry.value.formTypeData}' , @{name}!'') }
+                        </select>
+                        #} else if (entry.value.formType=='SELECT') { #
+                        <select name="@{name}" class="form-control" id="@{key}" @{valid }>
+                            # layout("util/select.html",{obj:data,name:name}){ } #
+                        </select>
+                        #}#
+                    </div>
+                </div>
+                #} #
 
-		<div style="height: 50px;clear: both;">&nbsp;</div>
-		<nav class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
-				<button class="btn btn-primary" onclick="return oper.save(${model.@{crud.primaryKey}})">保 存</button>
-				<button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
-			</div>
-		</nav>
-	</form>
+            </form>
+        </div>
+    </div>
+
+    <div style="height: 50px;clear: both;">&nbsp;</div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
+            <button class="btn btn-primary" onclick="return oper.save(${model.id})">保 存</button>
+            <button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
+        </div>
+    </nav>
 </div>
 <%}; %>
 

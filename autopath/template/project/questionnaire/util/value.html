@@ -1,0 +1,13 @@
+#
+DIRECTIVE SAFE_OUTPUT_OPEN;
+#
+ 
+#for(entry in obj){ #
+	<% if(@{name}==@{entry.key}) { %>
+	@{entry.value}
+	<%	} %>
+#} #
+
+#
+DIRECTIVE SAFE_OUTPUT_CLOSE;
+#

@@ -1,0 +1,5 @@
+#for(entry in obj){ #
+<label class="radio-inline">
+  <input type="radio" name="@{name}" id="@{entry.id}" value="@{entry.key}"  ${@{name}==@{entry.key}?"checked":"" } > @{entry.value}
+</label>
+#} #
