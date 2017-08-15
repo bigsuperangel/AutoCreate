@@ -8,7 +8,6 @@ import com.jflyfox.autocreate.util.DbUtils;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.sql.SQLException;
 import java.util.Map;
 
 
