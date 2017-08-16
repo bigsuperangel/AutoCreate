@@ -2,8 +2,8 @@ package com.jflyfox.modules.@{crud.urlKey};
 
 import com.jfinal.plugin.activerecord.Page;
 import com.jflyfox.component.base.BaseProjectController;
-import com.jflyfox.jfinal.component.annotation.ControllerBind;
-import com.jflyfox.jfinal.component.db.SQLUtils;
+import com.jflyfox.component.annotation.ControllerBind;
+import com.jflyfox.util.SQLUtils;
 import com.jflyfox.modules.admin.attachimage.TbAttachImage;
 import com.jflyfox.util.StrUtils;
 
