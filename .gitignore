@@ -66,3 +66,4 @@ local.properties
 *.iml
 *.iws
 *.class
+autopath/

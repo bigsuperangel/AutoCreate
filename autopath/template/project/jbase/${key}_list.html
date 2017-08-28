@@ -160,11 +160,7 @@ var bodyContent = {
 		if (entry.value.formType=="TEXTAREA") {
 		#
 				<td title="${@{name}}">
-				<% if (strutil.length(@{name}) > 6) { %>
-					${strutil.subStringTo(@{name}, 0, 6)}...
-				<% 	} else { %>
 					${@{name}}
-				<%  } %>
 				</td> 
 		#  } else if (entry.value.formType=="INPUT") { #
 		#	if (entry.value.inputType=='TEXT') { #
