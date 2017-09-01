@@ -5,17 +5,13 @@ package com.jfinal.kit;
  * @auther linyu
  * @create 2017-02-13:16:14
  */
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Properties;
 
 public class Config {
     private final static URL classPathUrl = Config.class.getResource("/");
@@ -65,8 +61,6 @@ public class Config {
     }
 
     private static void setConfigMap() {
-        System.out.println(classPath);
-        System.out.println(configPath);
         String filePath = classPath + configPath;
         List<String> list = findFiles(filePath);
         for (String configName : list) {
