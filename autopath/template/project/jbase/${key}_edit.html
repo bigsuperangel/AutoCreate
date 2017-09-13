@@ -3,20 +3,6 @@ DIRECTIVE SAFE_OUTPUT_OPEN;
 var headContent = {
 include("/pages/template/head.html"){}
 %>
-<script type="text/javascript">
-    var oper = {
-        save: function (id) {
-            if (!validForm()) {
-                return false;
-            }
-            id = id || '0';
-            var url = 'admin/@{crud.urlKey}/save/' + id;
-            form1.action = url;
-            form1.submit();
-            return true;
-        }
-    };
-</script>
 
 <%
 };
@@ -26,7 +12,7 @@ var bodyContent = {
     <br>
     <div class="panel panel-default">
         <div class="panel-body">
-            <form name="form1" method="post" class="form-horizontal" role="form">
+            <form name="form1" method="post" class="form-horizontal" data-toggle="validator" role="form" action="${ctx}admin/@{crud.urlKey}/save/${model.id!0}">
                 <input type="hidden" name="model.@{crud.primaryKey }" value="${model.@{crud.primaryKey}}"/>
 
                 <% // 列表头部%>
@@ -57,19 +43,18 @@ var bodyContent = {
                 #
                 #if(entry.value.formType=='TEXTAREA') { #
                 <div class="form-group">
-                    <label for="@{key}" class="col-sm-2 control-label">@{entry.value.name}</label>
+                    <label class="col-sm-2 control-label">@{entry.value.name}</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" cols="30" name="@{name}" id="@{key}" @{valid }>${@{name}}</textarea>
+                        <textarea class="form-control" rows="5" cols="30" name="@{name}" @{valid }>${@{name}}</textarea>
                     </div>
                 </div>
                 #continue;} #
                 <div class="form-group">
-                    <label for="@{key}" class="col-sm-2 control-label">@{entry.value.name}</label>
+                    <label class="col-sm-2 control-label">@{entry.value.name}</label>
                     <div class="col-sm-10">
                         # if (entry.value.formType=="INPUT") {#
                         #if (entry.value.inputType=='TEXT') { #
-                        <input class="form-control" type="text" name="@{name}" value="${@{name} }" id="@{key}" @{valid
-                               }/>
+                        <input class="form-control" type="text" name="@{name}" value="${@{name} }"  required data-required-error="@{entry.value.name}必填" />
                         #
                         } else if (entry.value.inputType=='RADIO') {
                         layout("util/radio.html",{obj:data,name:name}){ }
@@ -77,33 +62,33 @@ var bodyContent = {
                         layout("util/checkbox.html",{obj:data,name:name}){ }
                         } else {
                         #
-                        <input class="form-control" type="@{entry.value.inputType}" name="@{name}" value="${@{name}}"
-                               id="@{key}" @{valid }}/>
+                        <input class="form-control" type="@{entry.value.inputType}" name="@{name}" value="${@{name}}" required data-required-error="@{entry.value.name}必填" />
                         #} #
                         #} else if (entry.value.formType=='DICT') { #
-                        <select name="@{name}" class="form-control" id="@{key}" @{valid }>
+                        <select name="@{name}" class="form-control" required data-required-error="@{entry.value.name}必填" />
                             ${flyfox.dictSelect('@{entry.value.formTypeData}' , @{name}!'') }
                         </select>
                         #} else if (entry.value.formType=='SELECT') { #
-                        <select name="@{name}" class="form-control" id="@{key}" @{valid }>
+                        <select name="@{name}" class="form-control" required data-required-error="@{entry.value.name}必填" />
                             # layout("util/select.html",{obj:data,name:name}){ } #
                         </select>
                         #}#
+                        <div class="help-block with-errors"></div>
                     </div>
                 </div>
                 #} #
 
+                <div style="height: 50px;clear: both;">&nbsp;</div>
+                <nav class="navbar navbar-default navbar-fixed-bottom">
+                    <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
+                        <button class="btn btn-primary" type="submit">保 存</button>
+                        <button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
+                    </div>
+                </nav>
             </form>
         </div>
     </div>
 
-    <div style="height: 50px;clear: both;">&nbsp;</div>
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container" style="padding: 5px 0px 5px 0px;text-align: center;">
-            <button class="btn btn-primary" onclick="return oper.save(${model.id})">保 存</button>
-            <button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
-        </div>
-    </nav>
 </div>
 <%}; %>
 
