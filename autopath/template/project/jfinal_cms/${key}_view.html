@@ -8,12 +8,10 @@ include("/pages/template/head.html"){}
 };
 var bodyContent = {
 %>
-<div class="container">
-    <br>
-    <div class="panel panel-primary">
-        <div class="panel-heading">@{crud.name}查看</div>
+<section class="content">
+    <div class="panel panel-default">
         <div class="panel-body">
-            <form name="form1" method="post" class="form-horizontal" role="form">
+            <form name="form1" class="form-horizontal" role="form">
 
                 <% // 列表头部%>
                 #for(entry in crud.editMap){ #
@@ -88,7 +86,7 @@ var bodyContent = {
             <button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
         </div>
     </nav>
-</div>
+</section>
 <%}; %>
 
 <% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
