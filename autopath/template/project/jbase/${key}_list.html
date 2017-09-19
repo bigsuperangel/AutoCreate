@@ -4,20 +4,10 @@
 %>
 
 <script type="text/javascript">
-	# 
-		var height = 300;
-		// 重设高度
-		height = crud.editMap.~size * 60 + 90;
-		if(height < 300) height = 300;
-		if(height > 500) height = 500;
-	#
-	
 	var oper;
 	jQuery(function($) {
 		// 页面方法
 		oper = {
-			width : 400,
-			height :@{height},
         	form : document.form1,
 			list : function() {
 				var url = 'admin/@{crud.urlKey}/list';
@@ -110,17 +100,6 @@ var bodyContent = {
 			# }#
 			</div>
 	# }#
-
-			# for(entry in crud.listMap){ #
-			#
-			var key = entry.value.key;
-			var name = 'attr.'+entry.value.key;
-			#
-			<div class="form-group">
-				<input class="form-control" type="text" name="@{name}" value="${@{name}!''}"
-					   placeholder="请输入@{entry.value.name}" />
-			</div>
-			# } #
 
 			<button type="button" class="btn btn-default" onclick="oper.list();" name="search">
 			 		<span class="glyphicon glyphicon-search"></span> 查 询

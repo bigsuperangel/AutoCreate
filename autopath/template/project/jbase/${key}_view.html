@@ -8,10 +8,9 @@ include("/pages/template/head.html"){}
 };
 var bodyContent = {
 %>
-<div class="container">
+<section class="content">
     <br>
-    <div class="panel panel-primary">
-        <div class="panel-heading">@{crud.name}查看</div>
+    <div class="panel panel-default">
         <div class="panel-body">
             <form name="form1" method="post" class="form-horizontal" role="form">
 
@@ -88,7 +87,7 @@ var bodyContent = {
             <button class="btn btn-default" onclick="closeIframe();return false;">关 闭</button>
         </div>
     </nav>
-</div>
+</section>
 <%}; %>
 
 <% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>

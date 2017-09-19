@@ -37,9 +37,9 @@ public class ModelAttr {
 
 	/**
 	 * 数据展示
-	 * 
+	 *
 	 * @see 学以致用，不嫌麻烦~！~
-	 * 
+	 *
 	 * @see 8位，前四位保留;后三位，
 	 * @see 查询,展示列表，添加列表，编辑列表，查看列表
 	 * @see 1表示展示，0表示隐藏
@@ -68,6 +68,12 @@ public class ModelAttr {
 
 	public boolean isView() {
 		return (operate >> 0 & 0x1) == 1;
+	}
+
+	public static void main(String[] args) {
+		byte oper = (byte) 0xf;
+		System.out.println(oper);
+		System.out.println((oper >> 4 & 0x1));
 	}
 
 	public ModelAttr addSearch() {
