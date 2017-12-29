@@ -6,7 +6,7 @@ import com.jflyfox.component.annotation.ModelBind;
 /**
  * @{crud.table.remarks}
  */
-@ModelBind(table = "@{crud.table.tableName}")
+@ModelBind(table = "@{crud.table.tableName}", remarks="@{crud.table.remarks}")
 public class @{crud.table.className} extends BaseProjectModel<@{crud.table.className}> {
 
 	private static final long serialVersionUID = 1L;
