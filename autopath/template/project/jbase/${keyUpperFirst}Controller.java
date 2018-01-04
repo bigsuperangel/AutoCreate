@@ -60,7 +60,7 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 
 	@ApiOperation(url = "/admin/@{crud.urlKey}/view", tag = "@{crud.urlKey}", httpMethod = "get", description = "查看")
 	@Params({
-			@Param(name = "@{crud.primaryKey}", description = "ID", required = true, dataType = "Integer"),
+			@Param(name = "@{crud.primaryKey}", description = "ID", required = true, dataType = "integer"),
 	})
 	public void view() {
 		@{crud.table.className} model = @{crud.table.className}.dao.findById(getParaToInt());
@@ -70,7 +70,7 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 
 	@ApiOperation(url = "/admin/@{crud.urlKey}/delete", tag = "@{crud.urlKey}", httpMethod = "post", description = "删除")
 	@Params({
-			@Param(name = "@{crud.primaryKey}", description = "ID", required = true, dataType = "Integer"),
+			@Param(name = "@{crud.primaryKey}", description = "ID", required = true, dataType = "integer"),
 	})
 	public void delete() {
 		Integer pid = getParaToInt();
@@ -86,7 +86,7 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 
 	@ApiOperation(url = "/admin/@{crud.urlKey}/edit", tag = "@{crud.urlKey}", httpMethod = "get", description = "修改")
 	@Params({
-			@Param(name = "@{crud.primaryKey}", description = "ID", required = true, dataType = "Integer"),
+			@Param(name = "@{crud.primaryKey}", description = "ID", required = true, dataType = "integer"),
 	})
 	public void edit() {
 		@{crud.table.className} model = @{crud.table.className}.dao.findById(getParaToInt());
@@ -97,7 +97,7 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 	@ApiOperation(url = "/admin/@{crud.urlKey}/save", tag = "@{crud.urlKey}", httpMethod = "post", description = "保存")
 	@Params({
 			# for(column in crud.table.columns){ #
-			@Param(name = "@{strutils.toLowerCase(column.columnName)}", description = "@{column.remarks}", dataType = "@{column.javaType}"),
+			@Param(name = "@{strutils.toLowerCase(column.columnName)}", description = "@{column.remarks}", dataType = "@{column.swaggerType}"),
 			# } #
 	})
 	public void save() {

@@ -10,7 +10,8 @@ import java.util.HashMap;
  */
 public class DbDataTypesUtils {
 
-	private final static HashMap<Integer, Object> TYPE_MAP = new HashMap<Integer, Object>();
+	private final static HashMap<Integer, Object> TYPE_MAP = new HashMap<>();
+	private final static HashMap<Integer, String> SWAGGER_TYPE_MAP = new HashMap<>();
 
 	public static boolean isFloatNumber(String javaType) {
 		if (javaType.endsWith("Float") || javaType.endsWith("Double") || javaType.endsWith("BigDecimal")
@@ -40,6 +41,10 @@ public class DbDataTypesUtils {
 
 	public static boolean isString(String javaType) {
 		return javaType.endsWith("String");
+	}
+
+	public static String getSwaggerType(int sqlType) {
+		return SWAGGER_TYPE_MAP.get(sqlType);
 	}
 
 	public static String getPreferredJavaType(int sqlType, int size, int decimalDigits) {
@@ -96,6 +101,34 @@ public class DbDataTypesUtils {
 		TYPE_MAP.put(Types.REF, "java.sql.Ref");
 		TYPE_MAP.put(Types.STRUCT, "java.lang.Object");
 		TYPE_MAP.put(Types.JAVA_OBJECT, "java.lang.Object");
+
+		SWAGGER_TYPE_MAP.put(Types.TINYINT, "integer");
+//		TYPE_MAP.put(Types.SMALLINT, "java.lang.Short");
+		SWAGGER_TYPE_MAP.put(Types.SMALLINT, "integer");
+		SWAGGER_TYPE_MAP.put(Types.INTEGER, "integer");
+		SWAGGER_TYPE_MAP.put(Types.BIGINT, "long");
+		SWAGGER_TYPE_MAP.put(Types.REAL, "float");
+		SWAGGER_TYPE_MAP.put(Types.FLOAT, "double");
+		SWAGGER_TYPE_MAP.put(Types.DOUBLE, "double");
+		SWAGGER_TYPE_MAP.put(Types.DECIMAL, "integer");
+		SWAGGER_TYPE_MAP.put(Types.NUMERIC, "integer");
+		SWAGGER_TYPE_MAP.put(Types.BIT, "boolean");
+		SWAGGER_TYPE_MAP.put(Types.BOOLEAN, "boolean");
+		SWAGGER_TYPE_MAP.put(Types.CHAR, "string");
+		SWAGGER_TYPE_MAP.put(Types.VARCHAR, "string");
+		SWAGGER_TYPE_MAP.put(Types.LONGVARCHAR, "string");
+		SWAGGER_TYPE_MAP.put(Types.BINARY, "string");
+		SWAGGER_TYPE_MAP.put(Types.VARBINARY, "string");
+		SWAGGER_TYPE_MAP.put(Types.LONGVARBINARY, "string");
+		SWAGGER_TYPE_MAP.put(Types.DATE, "string");
+		SWAGGER_TYPE_MAP.put(Types.TIME, "string");
+		SWAGGER_TYPE_MAP.put(Types.TIMESTAMP, "string");
+		SWAGGER_TYPE_MAP.put(Types.CLOB, "string");
+		SWAGGER_TYPE_MAP.put(Types.BLOB, "string");
+		SWAGGER_TYPE_MAP.put(Types.ARRAY, "string");
+		SWAGGER_TYPE_MAP.put(Types.REF, "string");
+		SWAGGER_TYPE_MAP.put(Types.STRUCT, "string");
+		SWAGGER_TYPE_MAP.put(Types.JAVA_OBJECT, "string");
 	}
 
 }

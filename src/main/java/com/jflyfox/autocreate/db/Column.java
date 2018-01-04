@@ -239,6 +239,10 @@ public class Column implements java.io.Serializable, Cloneable {
 		return DbDataTypesUtils.getPreferredJavaType(getSqlType(), getSize(), getDecimalDigits());
 	}
 
+	public String getSwaggerType() {
+		return DbDataTypesUtils.getSwaggerType(getSqlType());
+	}
+
 	/**
 	 * 根据列名，根据sqlName计算得出，示例值： BirthDate
 	 **/
