@@ -12,9 +12,9 @@ import com.swagger.annotation.Param;
 import com.swagger.annotation.Params;
 
 /**
- * @{crud.table.remarks}
- * 
- * @author linyu @{date()}
+ * <p>Description:@{crud.table.remarks}</p>
+ * @author linyu
+ * @create @{date()}
  */
 @Api(tag = "@{crud.urlKey}", description = "@{crud.table.remarks}")
 @ControllerBind(controllerKey = "/admin/@{crud.urlKey}")

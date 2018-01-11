@@ -4,7 +4,9 @@ import com.jflyfox.component.base.BaseProjectModel;
 import com.jflyfox.component.annotation.ModelBind;
 
 /**
- * @{crud.table.remarks}
+ * <p>Description:@{crud.table.remarks}</p>
+ * @author linyu
+ * @create @{date()}
  */
 @ModelBind(table = "@{crud.table.tableName}", remarks="@{crud.table.remarks}")
 public class @{crud.table.className} extends BaseProjectModel<@{crud.table.className}> {
