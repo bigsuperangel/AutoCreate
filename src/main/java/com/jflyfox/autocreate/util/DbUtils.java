@@ -83,10 +83,10 @@ public class DbUtils {
 				model.setPrimaryKey(table.getPkList().get(0));
 			}
 			String urlKey = table.getTableName();
-			if (table.getTableName().indexOf("_") >= 0) {
+/*			if (table.getTableName().indexOf("_") >= 0) {
 				urlKey = table.getTableName().substring(table.getTableName().indexOf("_") + 1);
-				urlKey = urlKey.replaceAll("_", "");
-			}
+			}*/
+			urlKey = urlKey.replaceAll("_", "");
 
 			model.setUrlKey(urlKey);
 			model.setName(table.getRemarks());
