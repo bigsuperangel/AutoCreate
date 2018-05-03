@@ -1,8 +1,5 @@
 package com.jflyfox.modules.@{crud.urlKey};
 
-import com.jflyfox.component.base.BaseProjectModel;
-import com.jflyfox.jfinal.component.annotation.ModelBind;
-
 /**
  * @{crud.table.remarks}
  */
