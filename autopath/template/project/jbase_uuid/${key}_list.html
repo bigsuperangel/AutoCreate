@@ -10,30 +10,30 @@
 		oper = {
         	form : document.form1,
 			list : function() {
-				var url = 'admin/@{crud.urlKey}/list';
+				var url = 'biz/@{crud.urlKey}/list';
 				this.form.action = url;
 				this.form.submit();
 			},
 			view : function(id) {
                 ymIframe({
-                    message:'admin/@{crud.urlKey}/view/'+id,
+                    message:'biz/@{crud.urlKey}/view/'+id,
                     title:'查看@{crud.name}'
                 });
 			},
 			add : function() {
                 ymIframe({
-                    message:'admin/@{crud.urlKey}/add',
+                    message:'biz/@{crud.urlKey}/add',
                     title:'添加@{crud.name}'
                 });
 			},
 			edit : function(id) {
 				ymIframe({
-					message:'admin/@{crud.urlKey}/edit/'+id,
+					message:'biz/@{crud.urlKey}/edit/'+id,
 					title:'修改@{crud.name}'
 				});
 			},
 			del : function(id) {
-				var url = 'admin/@{crud.urlKey}/delete/'+id;
+				var url = 'biz/@{crud.urlKey}/delete/'+id;
 				var title = '确认要删除该@{crud.name}信息？';
 				Confirm(title, function() {
 					form1.action = url;
@@ -166,13 +166,13 @@ var bodyContent = {
 	# } #
 				<td>
 					<a href="javascript:void(0);" class="btn btn-sm btn-success"
-					   onclick="oper.view(${item.@{crud.primaryKey}})">查看</a>
+					   onclick="oper.view('${item.@{crud.primaryKey}}')">查看</a>
 
 					<a href="javascript:void(0);" class="btn btn-sm btn-primary"
-					   onclick="oper.edit(${item.@{crud.primaryKey}})">修改</a>
+					   onclick="oper.edit('${item.@{crud.primaryKey}}')">修改</a>
 
 					<a href="javascript:void(0);" class="btn btn-sm btn-danger"
-					   onclick="oper.del(${item.@{crud.primaryKey}})">删除</a>
+					   onclick="oper.del('${item.@{crud.primaryKey}}')">删除</a>
 				</td>
 				</tr>
 			<% } %>

@@ -23,12 +23,14 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 			sql.setAlias("t");
 			// 查询条件
 		}
+//排序前先重组sql,必须放在orderby前面调用
+		sql.recombine();
 		// 排序
 		String orderBy = getBaseForm().getOrderBy();
-		if (StrUtils.isEmpty(orderBy)) {
-			sql.append(" order by t.@{crud.primaryKey} desc ");
+		if (StrKit.isBlank(orderBy)) {
+		sql.append(" order by t.create_time desc ");
 		} else {
-			sql.append(" order by t.").append(orderBy);
+		sql.append(" order by t.").append(orderBy);
 		}
 
 		Page<@{crud.table.className}> page = @{crud.table.className}.dao.paginate(getPaginator(), "select t.* ", //
@@ -37,6 +39,8 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 		// 下拉框
 		setAttr("page", page);
 		setAttr("attr", model);
+		setAttr("form", getBaseForm());
+
 		render(path + "list.html");
 	}
 

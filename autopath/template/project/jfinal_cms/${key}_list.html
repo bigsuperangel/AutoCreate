@@ -51,8 +51,6 @@
 				});
 			}
     }
-        //显示Menu索引
-		showMenu('page_@{crud.urlKey}');
 	});
 	
 	//分页
@@ -68,8 +66,8 @@ var bodyContent = {
 %>
 	<form name="form1" action="" method="post"  class="form-inline" role="form">
 		<!-- 菜单 -->
-		<% include("/pages/template/menu.html"){} %>
-		
+		<input type="hidden" name="form.orderColumn" value="${form.orderColumn!''}" />
+		<input type="hidden" name="form.orderAsc" value="${form.orderAsc!''}" />
 		<div class="tableSearch">
 			<%  //查询列表 %>
 	# for(entry in crud.searchMap){ #
