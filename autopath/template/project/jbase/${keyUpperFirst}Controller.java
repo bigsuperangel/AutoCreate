@@ -23,6 +23,9 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 	private static final String path = "/pages/admin/@{crud.urlKey}/@{crud.urlKey}_";
 	private static final String BIZ_CODE = "@{strutils.toUpperCase(crud.urlKey)}_CODE";
 
+	@Inject
+	@{strutils.toUpperCaseFirst(crud.urlKey)}Service service;
+
 	@ApiOperation(url = "/admin/@{crud.urlKey}", tag = "@{crud.urlKey}", httpMethod = "get", description = "列表")
 	public void index() {
 		list();

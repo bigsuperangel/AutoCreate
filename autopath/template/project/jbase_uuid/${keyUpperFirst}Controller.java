@@ -10,6 +10,7 @@ import com.swagger.annotation.ApiOperation;
 import com.swagger.annotation.Param;
 import com.swagger.annotation.Params;
 import com.jfinal.kit.StrKit;
+import com.jfinal.aop.Inject;
 
 /**
  * <p>Description:@{crud.table.remarks}</p>
@@ -21,6 +22,9 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 
 	private static final String path = "/pages/biz/@{crud.urlKey}/@{crud.urlKey}_";
 	private static final String BIZ_CODE = "@{strutils.toUpperCase(crud.urlKey)}_CODE";
+
+	@Inject
+	@{strutils.toUpperCaseFirst(crud.urlKey)}Service service;
 
 	public void index() {
 		list();
