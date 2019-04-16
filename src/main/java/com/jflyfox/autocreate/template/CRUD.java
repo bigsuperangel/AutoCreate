@@ -1,12 +1,12 @@
 package com.jflyfox.autocreate.template;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import com.jflyfox.autocreate.db.Table;
 import com.jflyfox.autocreate.template.model.FormType;
 import com.jflyfox.autocreate.template.model.ModelAttr;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class CRUD {
 

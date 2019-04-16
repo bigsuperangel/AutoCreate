@@ -1,18 +1,14 @@
 package com.jflyfox.autocreate.db;
 
+import com.jfinal.plugin.activerecord.Config;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.DbKit;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import com.jfinal.plugin.activerecord.Config;
-import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.DbKit;
+import java.util.*;
 
 /**
  * 

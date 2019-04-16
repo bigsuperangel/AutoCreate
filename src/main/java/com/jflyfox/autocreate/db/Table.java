@@ -1,11 +1,11 @@
 package com.jflyfox.autocreate.db;
 
+import com.jfinal.kit.StrKit;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
-
-import com.jfinal.kit.StrKit;
 
 public class Table implements Serializable, Cloneable {
 

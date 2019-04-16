@@ -1,8 +1,5 @@
 package com.test.jflyfox.config;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.jfinal.kit.Config;
 import com.jflyfox.autocreate.beetl.TemplateUtils;
 import com.jflyfox.autocreate.db.Table;
@@ -11,6 +8,9 @@ import com.jflyfox.autocreate.template.model.FormType;
 import com.jflyfox.autocreate.template.model.InputType;
 import com.jflyfox.autocreate.template.model.ModelAttr;
 import com.jflyfox.autocreate.util.AutoCreate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TableConfig {
 

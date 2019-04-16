@@ -6,7 +6,6 @@ import com.jfinal.kit.StrUtils;
 import com.jflyfox.autocreate.beetl.GroupTemplateFactory;
 import com.jflyfox.autocreate.beetl.TemplateUtils;
 import com.jflyfox.autocreate.template.CRUD;
-
 import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;
 

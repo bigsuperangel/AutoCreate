@@ -1,9 +1,5 @@
 package com.jflyfox.autocreate.template;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -14,6 +10,10 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jflyfox.autocreate.beetl.TemplateUtils;
 import com.jflyfox.autocreate.template.model.FormType;
 import com.jflyfox.autocreate.template.model.ModelAttr;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CRUDFactory {
 

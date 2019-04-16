@@ -1,0 +1,111 @@
+<%
+var headContent = {
+include("/pages/template/head.html"){}
+%>
+
+
+<%
+};
+
+var bodyContent = {
+%>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12" style="padding: 0;margin-bottom: 3px;">
+            <div class="input-group">
+                <span class="input-group-addon" >
+                    <i class="fa fa-check"></i>
+                </span>
+                #for(entry in crud.listMap){#
+                <input type="text" class="form-control" placeholder="请输入@{entry.value.name}" id="@{entry.value.key}">
+                <span class="input-group-addon" ><i class="fa fa-check"></i></span>
+                #}#
+
+
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="search();">搜索</button>
+                    <!--<button class="btn btn-default" type="button" onclick="reset();">重置</button>-->
+                  </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+
+    </div><!-- /.row -->
+
+    <div class="row">
+        <!-- PAGE CONTENT BEGINS -->
+        <table id="grid-table"></table>
+        <div id="grid-pager"></div>
+    </div>
+</section>
+
+<script>
+    var $grid = $("\#grid-table");
+    $(document).ready(function () {
+        $(window).on('resize.jqGrid', function () {
+            $grid.jqGrid('setGridWidth', $(".content").width());
+        });
+        $grid.jqGrid({
+            url: '${ctx}learn/@{crud.urlKey}/getListData',
+            mtype: "GET",
+            styleUI: 'Bootstrap',
+            datatype: "json",
+            colModel: [
+                {label: 'id', name: 'id', hidden: true, width: 30, key: true},
+            #for(entry in crud.listMap){#
+                {label: '@{entry.value.name}', name: '@{entry.value.key}', width: 120, sortable: false},
+            #}#
+            ],
+            viewrecords: true,
+            height: "auto",
+            rownumbers: true,
+            rownumWidth: 25,
+            multiselect: false,//checkbox多选
+            altRows: true,//隔行变色
+            footerrow: true,
+            userDataOnFooter: true, // use the userData parameter of the JSON response to display data on footer
+            rowNum: 10,
+            pager: "\#grid-pager",
+            autowidth: true,
+            onSelectRow: function (id) {
+                var row = $grid.getRowData(id);
+            },
+            subGrid: true,
+            subGridRowExpanded: showChildGrid,
+            subGridOptions : {
+                // load the subgrid data only once
+                // and the just show/hide
+                reloadOnExpand :true,
+                // select the row when the expand column is clicked
+                selectOnExpand : true
+            }
+        });
+
+        $(window).triggerHandler('resize.jqGrid');
+    });
+
+    function reloadGrid(){
+        $grid.trigger("reloadGrid"); //重新载入
+    }
+
+    function reset() {
+        $grid.jqGrid('setGridParam', {
+            datatype: 'json',
+            postData: {},
+            page: 1
+        }).trigger("reloadGrid"); //重新载入
+    }
+
+    function  search() {
+        $grid.jqGrid('setGridParam', {
+            datatype: 'json',
+            postData: {},
+            page: 1
+        }).trigger("reloadGrid"); //重新载入
+    }
+</script>
+<%}; %>
+
+
+<% layout("/pages/template/_layout.html",{head:headContent,body:bodyContent}){ %>
+<%} %>

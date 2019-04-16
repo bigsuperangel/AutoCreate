@@ -1,15 +1,14 @@
 package com.jflyfox.autocreate.beetl;
 
-import java.io.IOException;
-
 import com.jfinal.kit.StrUtils;
+import com.jflyfox.autocreate.template.CRUD;
 import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;
 import org.beetl.core.resource.FileResourceLoader;
 import org.beetl.core.resource.StringTemplateResourceLoader;
 
-import com.jflyfox.autocreate.template.CRUD;
+import java.io.IOException;
 
 /**
  * 字符串模板

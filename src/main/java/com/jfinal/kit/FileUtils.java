@@ -13,14 +13,6 @@ package com.jfinal.kit;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FileUtils {
     public FileUtils() {

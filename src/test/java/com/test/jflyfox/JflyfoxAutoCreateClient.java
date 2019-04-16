@@ -1,13 +1,13 @@
 package com.test.jflyfox;
 
-import java.sql.SQLException;
-import java.util.Map;
-
 import com.jfinal.kit.Config;
 import com.jfinal.kit.StrUtils;
 import com.jflyfox.autocreate.template.CRUD;
 import com.jflyfox.autocreate.util.AutoCreate;
 import com.jflyfox.autocreate.util.DbUtils;
+
+import java.sql.SQLException;
+import java.util.Map;
 
 public class JflyfoxAutoCreateClient {
 
