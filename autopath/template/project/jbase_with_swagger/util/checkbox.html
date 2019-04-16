@@ -1,0 +1,11 @@
+#
+DIRECTIVE SAFE_OUTPUT_OPEN;
+#
+# for(entry in obj){ #
+<label class="checkbox-inline">
+  <input type="checkbox" name="@{name}" id="@{entry.id}" value="@{entry.key}"  ${@{name}==@{entry.key}?"checked":"" } > @{entry.value}
+</label>
+# } #
+#
+DIRECTIVE SAFE_OUTPUT_CLOSE;
+#
