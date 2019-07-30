@@ -61,7 +61,8 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 	}
 
 	public void add() {
-		render(path + "add.html");
+		setAttr("stype", 1);
+		render(path + "edit.html");
 	}
 
 	public void view() {
@@ -85,6 +86,7 @@ public class @{strutils.toUpperCaseFirst(crud.urlKey)}Controller extends BasePro
 	public void edit() {
 		@{crud.table.className} model = @{crud.table.className}.dao.findById(getPara());
 		setAttr("model", model);
+		setAttr("stype", this.getParaToInt("stype",0));
 		render(path + "edit.html");
 	}
 

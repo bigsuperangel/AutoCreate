@@ -14,21 +14,15 @@
 				this.form.action = url;
 				this.form.submit();
 			},
-			view : function(id) {
-                ymIframe({
-                    message:'biz/@{crud.urlKey}/view/'+id,
-                    title:'查看@{crud.name}'
-                });
-			},
 			add : function() {
                 ymIframe({
                     message:'biz/@{crud.urlKey}/add',
                     title:'添加@{crud.name}'
                 });
 			},
-			edit : function(id) {
+			edit : function(id,stype) {
 				ymIframe({
-					message:'biz/@{crud.urlKey}/edit/'+id,
+					message:'biz/@{crud.urlKey}/edit/'+id + '?stype='+stype,
 					title:'修改@{crud.name}'
 				});
 			},
@@ -166,10 +160,10 @@ var bodyContent = {
 	# } #
 				<td>
 					<a href="javascript:void(0);" class="btn btn-sm btn-success"
-					   onclick="oper.view('${item.@{crud.primaryKey}}')">查看</a>
+					   onclick="oper.edit('${item.@{crud.primaryKey}}',0)">查看</a>
 
 					<a href="javascript:void(0);" class="btn btn-sm btn-primary"
-					   onclick="oper.edit('${item.@{crud.primaryKey}}')">修改</a>
+					   onclick="oper.edit('${item.@{crud.primaryKey}}',1)">修改</a>
 
 					<a href="javascript:void(0);" class="btn btn-sm btn-danger"
 					   onclick="oper.del('${item.@{crud.primaryKey}}')">删除</a>
